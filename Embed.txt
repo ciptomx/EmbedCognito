@@ -1,0 +1,42 @@
+//Form Kepuasan Mahasiswa
+
+<div class="cognito">
+<script src="https://www.cognitoforms.com/s/XX6n2cg0XU2Pci0WYyi04g"></script>
+<script>Cognito.load("forms", { id: "20" });</script>
+</div>
+
+//Form Kepuasan Capaian Luaran
+<div class="cognito">
+<script src="https://www.cognitoforms.com/s/XX6n2cg0XU2Pci0WYyi04g"></script>
+<script>Cognito.load("forms", { id: "21" });</script>
+</div>
+
+//Form Survey Kepuasan Kepuasan Sarpraas dan Kauangan
+<div class="cognito">
+<script src="https://www.cognitoforms.com/s/XX6n2cg0XU2Pci0WYyi04g"></script>
+<script>Cognito.load("forms", { id: "22" });</script>
+</div>
+
+//Form Survey Kepuasan Penelitian SI
+<div class="cognito">
+<script src="https://www.cognitoforms.com/s/XX6n2cg0XU2Pci0WYyi04g"></script>
+<script>Cognito.load("forms", { id: "23" });</script>
+</div>
+
+//Form Survey Kepuasan Pengabdian SI
+<div class="cognito">
+<script src="https://www.cognitoforms.com/s/XX6n2cg0XU2Pci0WYyi04g"></script>
+<script>Cognito.load("forms", { id: "24" });</script>
+</div>
+
+//Form Survey Kepuasan SDM SI
+<div class="cognito">
+<script src="https://www.cognitoforms.com/s/XX6n2cg0XU2Pci0WYyi04g"></script>
+<script>Cognito.load("forms", { id: "25" });</script>
+</div>
+
+//Form Survey Kepuasan Tata Pamong SI
+<div class="cognito">
+<script src="https://www.cognitoforms.com/s/XX6n2cg0XU2Pci0WYyi04g"></script>
+<script>Cognito.load("forms", { id: "26" });</script>
+</div>
