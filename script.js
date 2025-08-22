@@ -1,14 +1,5 @@
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    // Make tool cards clickable to show/hide content
-    const toolCards = document.querySelectorAll('.tool-card h3');
-    toolCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const toolCard = this.closest('.tool-card');
-            toolCard.classList.toggle('active');
-        });
-    });
-
     // File upload handling for Word to HTML converter
     const wordFileInput = document.getElementById('word-file');
     if (wordFileInput) {
@@ -20,7 +11,21 @@ document.addEventListener('DOMContentLoaded', function() {
     textareas.forEach(textarea => {
         textarea.addEventListener('input', autoResize);
     });
+
+    // Load sample data
+    loadSampleData();
 });
+
+// Toggle tool content visibility
+function toggleTool(toolId) {
+    const content = document.getElementById(toolId + '-content');
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        content.classList.add('animate-fade-in');
+    } else {
+        content.classList.add('hidden');
+    }
+}
 
 // Auto-resize textareas
 function autoResize() {
@@ -50,58 +55,48 @@ function convertWordToHtml() {
         return;
     }
 
-    const btn = event.target;
-    btn.classList.add('loading');
-    btn.disabled = true;
+    try {
+        let html = input
+            // Convert line breaks to paragraphs
+            .split('\n\n')
+            .filter(paragraph => paragraph.trim())
+            .map(paragraph => `<p>${paragraph.trim()}</p>`)
+            .join('\n');
 
-    // Simulate processing time
-    setTimeout(() => {
-        try {
-            let html = input
-                // Convert line breaks to paragraphs
-                .split('\n\n')
-                .filter(paragraph => paragraph.trim())
-                .map(paragraph => `<p>${paragraph.trim()}</p>`)
-                .join('\n');
+        // Convert single line breaks to <br> tags
+        html = html.replace(/\n/g, '<br>');
 
-            // Convert single line breaks to <br> tags
-            html = html.replace(/\n/g, '<br>');
+        // Convert basic formatting
+        html = html
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+            .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic
+            .replace(/__(.*?)__/g, '<u>$1</u>') // Underline
+            .replace(/~~(.*?)~~/g, '<del>$1</del>'); // Strikethrough
 
-            // Convert basic formatting
-            html = html
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
-                .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic
-                .replace(/__(.*?)__/g, '<u>$1</u>') // Underline
-                .replace(/~~(.*?)~~/g, '<del>$1</del>'); // Strikethrough
+        // Convert headers
+        html = html
+            .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
+            .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
+            .replace(/^# (.*?)$/gm, '<h1>$1</h1>');
 
-            // Convert headers
-            html = html
-                .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
-                .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
-                .replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+        // Convert lists
+        html = html
+            .replace(/^\- (.*?)$/gm, '<li>$1</li>')
+            .replace(/^(\d+)\. (.*?)$/gm, '<li>$2</li>');
 
-            // Convert lists
-            html = html
-                .replace(/^\- (.*?)$/gm, '<li>$1</li>')
-                .replace(/^(\d+)\. (.*?)$/gm, '<li>$2</li>');
+        // Wrap consecutive list items in ul/ol tags
+        html = html.replace(/(<li>.*?<\/li>)/gs, (match) => {
+            if (match.includes('<li>')) {
+                return `<ul>${match}</ul>`;
+            }
+            return match;
+        });
 
-            // Wrap consecutive list items in ul/ol tags
-            html = html.replace(/(<li>.*?<\/li>)/gs, (match) => {
-                if (match.includes('<li>')) {
-                    return `<ul>${match}</ul>`;
-                }
-                return match;
-            });
-
-            document.getElementById('html-output').value = html;
-            showMessage('Successfully converted to HTML!', 'success');
-        } catch (error) {
-            showMessage('Error converting to HTML: ' + error.message, 'error');
-        } finally {
-            btn.classList.remove('loading');
-            btn.disabled = false;
-        }
-    }, 500);
+        document.getElementById('html-output').value = html;
+        showMessage('Successfully converted to HTML!', 'success');
+    } catch (error) {
+        showMessage('Error converting to HTML: ' + error.message, 'error');
+    }
 }
 
 // HTML to Markdown Converter
@@ -112,38 +107,29 @@ function convertHtmlToMarkdown() {
         return;
     }
 
-    const btn = event.target;
-    btn.classList.add('loading');
-    btn.disabled = true;
+    try {
+        // Create a temporary DOM element to parse HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = input;
 
-    setTimeout(() => {
-        try {
-            // Create a temporary DOM element to parse HTML
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = input;
+        let markdown = '';
 
-            let markdown = '';
+        // Convert HTML elements to Markdown
+        const elements = tempDiv.childNodes;
+        elements.forEach(element => {
+            markdown += convertElementToMarkdown(element);
+        });
 
-            // Convert HTML elements to Markdown
-            const elements = tempDiv.childNodes;
-            elements.forEach(element => {
-                markdown += convertElementToMarkdown(element);
-            });
+        // Clean up the markdown
+        markdown = markdown
+            .replace(/\n{3,}/g, '\n\n') // Remove excessive line breaks
+            .replace(/^\s+|\s+$/g, ''); // Trim whitespace
 
-            // Clean up the markdown
-            markdown = markdown
-                .replace(/\n{3,}/g, '\n\n') // Remove excessive line breaks
-                .replace(/^\s+|\s+$/g, ''); // Trim whitespace
-
-            document.getElementById('markdown-output').value = markdown;
-            showMessage('Successfully converted to Markdown!', 'success');
-        } catch (error) {
-            showMessage('Error converting to Markdown: ' + error.message, 'error');
-        } finally {
-            btn.classList.remove('loading');
-            btn.disabled = false;
-        }
-    }, 500);
+        document.getElementById('markdown-output').value = markdown;
+        showMessage('Successfully converted to Markdown!', 'success');
+    } catch (error) {
+        showMessage('Error converting to Markdown: ' + error.message, 'error');
+    }
 }
 
 // Helper function to convert HTML elements to Markdown
@@ -157,47 +143,28 @@ function convertElementToMarkdown(element) {
         const content = element.textContent || '';
 
         switch (tagName) {
-            case 'h1':
-                return `# ${content}\n\n`;
-            case 'h2':
-                return `## ${content}\n\n`;
-            case 'h3':
-                return `### ${content}\n\n`;
-            case 'h4':
-                return `#### ${content}\n\n`;
-            case 'h5':
-                return `##### ${content}\n\n`;
-            case 'h6':
-                return `###### ${content}\n\n`;
-            case 'p':
-                return `${content}\n\n`;
-            case 'br':
-                return '\n';
-            case 'strong':
-            case 'b':
-                return `**${content}**`;
-            case 'em':
-            case 'i':
-                return `*${content}*`;
-            case 'u':
-                return `__${content}__`;
-            case 'del':
-            case 's':
-                return `~~${content}~~`;
-            case 'code':
-                return `\`${content}\``;
-            case 'pre':
-                return `\`\`\`\n${content}\n\`\`\`\n\n`;
-            case 'blockquote':
-                return `> ${content}\n\n`;
+            case 'h1': return `# ${content}\n\n`;
+            case 'h2': return `## ${content}\n\n`;
+            case 'h3': return `### ${content}\n\n`;
+            case 'h4': return `#### ${content}\n\n`;
+            case 'h5': return `##### ${content}\n\n`;
+            case 'h6': return `###### ${content}\n\n`;
+            case 'p': return `${content}\n\n`;
+            case 'br': return '\n';
+            case 'strong': case 'b': return `**${content}**`;
+            case 'em': case 'i': return `*${content}*`;
+            case 'u': return `__${content}__`;
+            case 'del': case 's': return `~~${content}~~`;
+            case 'code': return `\`${content}\``;
+            case 'pre': return `\`\`\`\n${content}\n\`\`\`\n\n`;
+            case 'blockquote': return `> ${content}\n\n`;
             case 'ul':
                 const ulItems = Array.from(element.querySelectorAll('li'));
                 return ulItems.map(item => `- ${item.textContent}`).join('\n') + '\n\n';
             case 'ol':
                 const olItems = Array.from(element.querySelectorAll('li'));
                 return olItems.map((item, index) => `${index + 1}. ${item.textContent}`).join('\n') + '\n\n';
-            case 'li':
-                return element.textContent;
+            case 'li': return element.textContent;
             case 'a':
                 const href = element.getAttribute('href') || '';
                 return `[${content}](${href})`;
@@ -205,11 +172,9 @@ function convertElementToMarkdown(element) {
                 const src = element.getAttribute('src') || '';
                 const alt = element.getAttribute('alt') || '';
                 return `![${alt}](${src})`;
-            default:
-                return content;
+            default: return content;
         }
     }
-
     return '';
 }
 
@@ -221,38 +186,29 @@ function convertHtmlToBBCode() {
         return;
     }
 
-    const btn = event.target;
-    btn.classList.add('loading');
-    btn.disabled = true;
+    try {
+        // Create a temporary DOM element to parse HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = input;
 
-    setTimeout(() => {
-        try {
-            // Create a temporary DOM element to parse HTML
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = input;
+        let bbcode = '';
 
-            let bbcode = '';
+        // Convert HTML elements to BBCode
+        const elements = tempDiv.childNodes;
+        elements.forEach(element => {
+            bbcode += convertElementToBBCode(element);
+        });
 
-            // Convert HTML elements to BBCode
-            const elements = tempDiv.childNodes;
-            elements.forEach(element => {
-                bbcode += convertElementToBBCode(element);
-            });
+        // Clean up the BBCode
+        bbcode = bbcode
+            .replace(/\n{3,}/g, '\n\n') // Remove excessive line breaks
+            .replace(/^\s+|\s+$/g, ''); // Trim whitespace
 
-            // Clean up the BBCode
-            bbcode = bbcode
-                .replace(/\n{3,}/g, '\n\n') // Remove excessive line breaks
-                .replace(/^\s+|\s+$/g, ''); // Trim whitespace
-
-            document.getElementById('bbcode-output').value = bbcode;
-            showMessage('Successfully converted to BBCode!', 'success');
-        } catch (error) {
-            showMessage('Error converting to BBCode: ' + error.message, 'error');
-        } finally {
-            btn.classList.remove('loading');
-            btn.disabled = false;
-        }
-    }, 500);
+        document.getElementById('bbcode-output').value = bbcode;
+        showMessage('Successfully converted to BBCode!', 'success');
+    } catch (error) {
+        showMessage('Error converting to BBCode: ' + error.message, 'error');
+    }
 }
 
 // Helper function to convert HTML elements to BBCode
@@ -266,47 +222,28 @@ function convertElementToBBCode(element) {
         const content = element.textContent || '';
 
         switch (tagName) {
-            case 'h1':
-                return `[size=6]${content}[/size]\n\n`;
-            case 'h2':
-                return `[size=5]${content}[/size]\n\n`;
-            case 'h3':
-                return `[size=4]${content}[/size]\n\n`;
-            case 'h4':
-                return `[size=3]${content}[/size]\n\n`;
-            case 'h5':
-                return `[size=2]${content}[/size]\n\n`;
-            case 'h6':
-                return `[size=1]${content}[/size]\n\n`;
-            case 'p':
-                return `${content}\n\n`;
-            case 'br':
-                return '\n';
-            case 'strong':
-            case 'b':
-                return `[b]${content}[/b]`;
-            case 'em':
-            case 'i':
-                return `[i]${content}[/i]`;
-            case 'u':
-                return `[u]${content}[/u]`;
-            case 'del':
-            case 's':
-                return `[s]${content}[/s]`;
-            case 'code':
-                return `[code]${content}[/code]`;
-            case 'pre':
-                return `[code]${content}[/code]\n\n`;
-            case 'blockquote':
-                return `[quote]${content}[/quote]\n\n`;
+            case 'h1': return `[size=6]${content}[/size]\n\n`;
+            case 'h2': return `[size=5]${content}[/size]\n\n`;
+            case 'h3': return `[size=4]${content}[/size]\n\n`;
+            case 'h4': return `[size=3]${content}[/size]\n\n`;
+            case 'h5': return `[size=2]${content}[/size]\n\n`;
+            case 'h6': return `[size=1]${content}[/size]\n\n`;
+            case 'p': return `${content}\n\n`;
+            case 'br': return '\n';
+            case 'strong': case 'b': return `[b]${content}[/b]`;
+            case 'em': case 'i': return `[i]${content}[/i]`;
+            case 'u': return `[u]${content}[/u]`;
+            case 'del': case 's': return `[s]${content}[/s]`;
+            case 'code': return `[code]${content}[/code]`;
+            case 'pre': return `[code]${content}[/code]\n\n`;
+            case 'blockquote': return `[quote]${content}[/quote]\n\n`;
             case 'ul':
                 const ulItems = Array.from(element.querySelectorAll('li'));
                 return ulItems.map(item => `[*]${item.textContent}`).join('\n') + '\n\n';
             case 'ol':
                 const olItems = Array.from(element.querySelectorAll('li'));
                 return olItems.map((item, index) => `[${index + 1}]${item.textContent}`).join('\n') + '\n\n';
-            case 'li':
-                return element.textContent;
+            case 'li': return element.textContent;
             case 'a':
                 const href = element.getAttribute('href') || '';
                 return `[url=${href}]${content}[/url]`;
@@ -317,15 +254,11 @@ function convertElementToBBCode(element) {
             case 'color':
                 const color = element.getAttribute('color') || 'black';
                 return `[color=${color}]${content}[/color]`;
-            case 'center':
-                return `[center]${content}[/center]`;
-            case 'right':
-                return `[right]${content}[/right]`;
-            default:
-                return content;
+            case 'center': return `[center]${content}[/center]`;
+            case 'right': return `[right]${content}[/right]`;
+            default: return content;
         }
     }
-
     return '';
 }
 
@@ -340,48 +273,39 @@ function generateBlockquote() {
         return;
     }
 
-    const btn = event.target;
-    btn.classList.add('loading');
-    btn.disabled = true;
-
-    setTimeout(() => {
-        try {
-            let html = '<blockquote class="custom-blockquote">\n';
-            html += `  <p class="quote-text">${escapeHtml(quote)}</p>\n`;
-            
-            if (author || source) {
-                html += '  <footer class="quote-footer">\n';
-                if (author) {
-                    html += `    <cite class="quote-author">— ${escapeHtml(author)}</cite>\n`;
-                }
-                if (source) {
-                    html += `    <span class="quote-source">, ${escapeHtml(source)}</span>\n`;
-                }
-                html += '  </footer>\n';
-            }
-            
-            html += '</blockquote>';
-
-            // Update preview
-            const preview = document.getElementById('blockquote-preview');
-            preview.innerHTML = quote;
+    try {
+        let html = '<blockquote class="custom-blockquote">\n';
+        html += `  <p class="quote-text">${escapeHtml(quote)}</p>\n`;
+        
+        if (author || source) {
+            html += '  <footer class="quote-footer">\n';
             if (author) {
-                preview.innerHTML += `<br><small>— ${author}</small>`;
+                html += `    <cite class="quote-author">— ${escapeHtml(author)}</cite>\n`;
             }
             if (source) {
-                preview.innerHTML += `<br><small>${source}</small>`;
+                html += `    <span class="quote-source">, ${escapeHtml(source)}</span>\n`;
             }
-
-            // Update output
-            document.getElementById('blockquote-output').value = html;
-            showMessage('Blockquote generated successfully!', 'success');
-        } catch (error) {
-            showMessage('Error generating blockquote: ' + error.message, 'error');
-        } finally {
-            btn.classList.remove('loading');
-            btn.disabled = false;
+            html += '  </footer>\n';
         }
-    }, 500);
+        
+        html += '</blockquote>';
+
+        // Update preview
+        const preview = document.getElementById('blockquote-preview');
+        preview.innerHTML = quote;
+        if (author) {
+            preview.innerHTML += `<br><small class="text-gray-500">— ${author}</small>`;
+        }
+        if (source) {
+            preview.innerHTML += `<br><small class="text-gray-500">${source}</small>`;
+        }
+
+        // Update output
+        document.getElementById('blockquote-output').value = html;
+        showMessage('Blockquote generated successfully!', 'success');
+    } catch (error) {
+        showMessage('Error generating blockquote: ' + error.message, 'error');
+    }
 }
 
 // Helper function to escape HTML
@@ -431,88 +355,30 @@ function fallbackCopyToClipboard(text) {
 }
 
 // Show message function
-function showMessage(message, type = 'info') {
-    // Remove existing messages
-    const existingMessages = document.querySelectorAll('.message');
-    existingMessages.forEach(msg => msg.remove());
-
-    // Create new message
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message message-${type}`;
-    messageDiv.textContent = message;
-
-    // Style the message
-    messageDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        border-radius: 8px;
-        color: white;
-        font-weight: 600;
-        z-index: 1000;
-        animation: slideInRight 0.3s ease;
-        max-width: 300px;
-        word-wrap: break-word;
-    `;
-
+function showMessage(message, type = 'success') {
+    const messageElement = document.getElementById('success-message');
+    const messageText = document.getElementById('message-text');
+    
+    // Set message text
+    messageText.textContent = message;
+    
     // Set background color based on type
-    switch (type) {
-        case 'success':
-            messageDiv.style.background = '#27ae60';
-            break;
-        case 'error':
-            messageDiv.style.background = '#e74c3c';
-            break;
-        case 'warning':
-            messageDiv.style.background = '#f39c12';
-            break;
-        default:
-            messageDiv.style.background = '#3498db';
+    if (type === 'error') {
+        messageElement.className = 'fixed top-6 right-6 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50';
+    } else {
+        messageElement.className = 'fixed top-6 right-6 bg-success text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50';
     }
-
-    // Add to page
-    document.body.appendChild(messageDiv);
-
-    // Auto-remove after 3 seconds
+    
+    // Show message
+    messageElement.classList.remove('translate-x-full');
+    
+    // Auto-hide after 3 seconds
     setTimeout(() => {
-        messageDiv.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => {
-            if (messageDiv.parentNode) {
-                messageDiv.parentNode.removeChild(messageDiv);
-            }
-        }, 300);
+        messageElement.classList.add('translate-x-full');
     }, 3000);
 }
 
-// Add CSS animations for messages
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Add some sample data for demonstration
+// Load sample data for demonstration
 function loadSampleData() {
     // Sample Word content
     const sampleWord = `# Sample Document
@@ -561,6 +427,3 @@ This is a **sample document** that demonstrates the Word to HTML converter.
         document.getElementById('quote-author').value = "Steve Jobs";
     }
 }
-
-// Load sample data when page loads
-document.addEventListener('DOMContentLoaded', loadSampleData);

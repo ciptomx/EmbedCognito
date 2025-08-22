@@ -1,6 +1,6 @@
 # Document Conversion Tools
 
-Aplikasi web profesional untuk mengkonversi dokumen antara berbagai format dengan interface yang modern dan responsif.
+Aplikasi web profesional untuk mengkonversi dokumen antara berbagai format dengan interface yang modern dan responsif menggunakan Tailwind CSS.
 
 ## 🚀 Fitur Utama
 
@@ -36,15 +36,15 @@ Aplikasi web profesional untuk mengkonversi dokumen antara berbagai format denga
 
 - **Interface Modern**: Design yang clean dan profesional
 - **Responsif**: Bekerja sempurna di desktop, tablet, dan mobile
-- **Animasi**: Transisi dan animasi yang smooth
+- **Tailwind CSS**: Utility-first CSS framework untuk rapid development
 - **Color Scheme**: Menggunakan tema merah sesuai dengan gambar referensi
 - **Icon**: Font Awesome icons untuk visual yang menarik
-- **Hover Effects**: Interaksi yang engaging
+- **Hover Effects**: Interaksi yang engaging dengan animasi smooth
 
 ## 🛠️ Teknologi yang Digunakan
 
 - **HTML5**: Struktur semantik yang modern
-- **CSS3**: Styling dengan Grid, Flexbox, dan animasi
+- **Tailwind CSS**: Utility-first CSS framework
 - **JavaScript ES6+**: Fungsi konversi yang powerful
 - **Font Awesome**: Icon library yang komprehensif
 - **Responsive Design**: Mobile-first approach
@@ -95,35 +95,45 @@ Aplikasi ini dirancang dengan pendekatan mobile-first dan mendukung:
 - **File Upload**: Dukungan untuk upload file Word
 - **Sample Data**: Data contoh untuk testing
 - **Success Messages**: Notifikasi yang informatif
-- **Loading States**: Indikator loading saat konversi
+- **Toggle Tool Content**: Klik judul untuk show/hide tool content
 - **Error Handling**: Penanganan error yang baik
 
 ## 🔧 Customization
 
 ### Mengubah Warna Tema
-Edit file `styles.css` dan ubah variabel warna:
-```css
-:root {
-    --primary-color: #e74c3c;
-    --secondary-color: #2c3e50;
-    --success-color: #27ae60;
-    --info-color: #3498db;
+Edit file HTML dan ubah konfigurasi Tailwind:
+```javascript
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: '#e74c3c',    // Warna utama
+                secondary: '#2c3e50',  // Warna sekunder
+                success: '#27ae60',    // Warna sukses
+                info: '#3498db',       // Warna info
+                warning: '#f39c12'     // Warna warning
+            }
+        }
+    }
 }
 ```
 
 ### Menambah Tool Baru
 1. Tambahkan HTML structure di `index.html`
-2. Tambahkan styling di `styles.css`
+2. Gunakan class Tailwind CSS untuk styling
 3. Tambahkan fungsi JavaScript di `script.js`
 
 ## 📁 Struktur File
 
 ```
 document-conversion-tools/
-├── index.html          # File HTML utama
-├── styles.css          # Styling dan layout
+├── index.html          # File HTML utama dengan Tailwind CSS
+├── demo.html           # Halaman demo dengan Tailwind CSS
+├── test.html           # Halaman testing dengan Tailwind CSS
 ├── script.js           # Fungsi JavaScript
-└── README.md           # Dokumentasi ini
+├── package.json        # Konfigurasi project
+├── README.md           # Dokumentasi ini
+└── STRUCTURE.md        # Overview arsitektur aplikasi
 ```
 
 ## 🌐 Browser Support
@@ -134,9 +144,44 @@ document-conversion-tools/
 - Edge 79+
 - Mobile browsers modern
 
-## 📝 Lisensi
+## 📝 Keunggulan Tailwind CSS
 
-Aplikasi ini dibuat untuk tujuan demonstrasi dan dapat digunakan secara bebas.
+- **Utility-First**: Styling langsung dengan class utility
+- **Responsive**: Built-in responsive design classes
+- **Customizable**: Mudah dikustomisasi dengan config
+- **Performance**: CSS yang dioptimasi
+- **Developer Experience**: Rapid development dengan utility classes
+
+## 🚀 Cara Menjalankan
+
+### 1. Local Development
+```bash
+# Buka file index.html langsung di browser
+# Atau gunakan live server
+npx live-server
+
+# Atau gunakan Python
+python3 -m http.server 8000
+```
+
+### 2. Production
+- Upload semua file ke web server
+- Aplikasi siap digunakan tanpa build process
+- Tailwind CSS di-load dari CDN
+
+## 🔒 Security & Best Practices
+
+- **Input Sanitization**: HTML escaping untuk user input
+- **Safe DOM manipulation**: Menggunakan createElement untuk parsing
+- **XSS Prevention**: Tidak ada eval() atau innerHTML langsung
+- **File Validation**: Validasi tipe dan ukuran file
+
+## 📈 Performance
+
+- **CDN Loading**: Tailwind CSS dari CDN untuk performa optimal
+- **Minimal Dependencies**: Hanya Font Awesome sebagai external dependency
+- **Efficient Algorithms**: Konversi yang cepat dan efisien
+- **Lazy Loading**: Tool content hanya di-load saat dibutuhkan
 
 ## 🤝 Kontribusi
 
@@ -148,4 +193,4 @@ Jika ada pertanyaan atau masalah, silakan buat issue di repository ini.
 
 ---
 
-**Dibuat dengan ❤️ menggunakan teknologi web modern**
+**Dibuat dengan ❤️ menggunakan HTML, JavaScript, dan Tailwind CSS**

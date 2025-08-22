@@ -1,12 +1,12 @@
 {
   "name": "document-conversion-tools",
   "version": "1.0.0",
-  "description": "Professional web application for converting documents between different formats with modern UI",
+  "description": "Professional web application for converting documents between different formats with modern UI using Tailwind CSS",
   "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 8000",
-    "dev": "python3 -m http.server 8000",
-    "serve": "python3 -m http.server 8000"
+    "start": "npx live-server",
+    "dev": "npx live-server",
+    "serve": "npx live-server"
   },
   "keywords": [
     "document-converter",
@@ -16,7 +16,9 @@
     "word-to-html",
     "blockquote-generator",
     "web-tools",
-    "conversion-tools"
+    "conversion-tools",
+    "tailwind-css",
+    "vanilla-javascript"
   ],
   "author": "Document Conversion Tools Team",
   "license": "MIT",
@@ -31,6 +33,13 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "devDependencies": {},
-  "dependencies": {}
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

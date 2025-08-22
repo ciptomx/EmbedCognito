@@ -4,180 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Conversion Tools - Test Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .test-header {
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            margin: -20px -20px 40px -20px;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e74c3c',
+                        secondary: '#2c3e50',
+                        success: '#27ae60',
+                        info: '#3498db',
+                        warning: '#f39c12'
+                    }
+                }
+            }
         }
-        
-        .test-header h1 {
-            color: white;
-            margin-bottom: 15px;
-        }
-        
-        .test-section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            border-left: 5px solid #27ae60;
-        }
-        
-        .test-section h3 {
-            color: #27ae60;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .test-input {
-            background: white;
-            border: 2px solid #ecf0f1;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            min-height: 100px;
-            width: 100%;
-            resize: vertical;
-        }
-        
-        .test-output {
-            background: #2c3e50;
-            color: #ecf0f1;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            min-height: 100px;
-            width: 100%;
-            resize: vertical;
-        }
-        
-        .test-btn {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            margin: 10px 5px;
-            transition: all 0.3s ease;
-        }
-        
-        .test-btn:hover {
-            background: #229954;
-            transform: translateY(-2px);
-        }
-        
-        .test-btn.secondary {
-            background: #3498db;
-        }
-        
-        .test-btn.secondary:hover {
-            background: #2980b9;
-        }
-        
-        .test-results {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .result-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border: 2px solid #ecf0f1;
-        }
-        
-        .result-card h4 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #27ae60;
-            padding-bottom: 10px;
-        }
-        
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        
-        .status-success {
-            background: #27ae60;
-        }
-        
-        .status-error {
-            background: #e74c3c;
-        }
-        
-        .status-pending {
-            background: #f39c12;
-        }
-        
-        .test-summary {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .summary-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .stat-box {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #ecf0f1;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #27ae60;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="container">
-        <div class="test-header">
-            <h1><i class="fas fa-vial"></i> Document Conversion Tools - Test Page</h1>
-            <p>Halaman testing untuk memverifikasi semua fungsi konversi berjalan dengan benar</p>
+<body class="bg-gradient-to-br from-gray-50 to-green-100 min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Test Header -->
+        <div class="bg-gradient-to-r from-success to-green-500 text-white p-12 rounded-3xl text-center mb-12 shadow-2xl">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <i class="fas fa-vial mr-6"></i>
+                Document Conversion Tools - Test Page
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90">Halaman testing untuk memverifikasi semua fungsi konversi berjalan dengan benar</p>
         </div>
 
-        <div class="test-section">
-            <h3><i class="fas fa-file-word"></i> Test Word to HTML Converter</h3>
-            <p>Test konversi dokumen Word ke HTML dengan berbagai format teks.</p>
-            
-            <label>Input Word Content:</label>
-            <textarea class="test-input" id="word-test-input"># Test Document
+        <!-- Test Sections -->
+        <div class="space-y-8 mb-12">
+            <!-- Word to HTML Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-file-word mr-4"></i>
+                    Test Word to HTML Converter
+                </h3>
+                <p class="text-gray-700 mb-6">Test konversi dokumen Word ke HTML dengan berbagai format teks.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Input Word Content:</label>
+                    <textarea id="word-test-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20"># Test Document
 
 This is a **test document** for the Word to HTML converter.
 
@@ -200,25 +68,32 @@ This is a **test document** for the Word to HTML converter.
 *This should be italic text*
 
 **This should be bold text**</textarea>
-            
-            <button class="test-btn" onclick="testWordToHtml()">
-                <i class="fas fa-play"></i> Test Conversion
-            </button>
-            
-            <label>HTML Output:</label>
-            <textarea class="test-output" id="word-test-output" readonly></textarea>
-            
-            <button class="test-btn secondary" onclick="copyTestOutput('word-test-output')">
-                <i class="fas fa-copy"></i> Copy Output
-            </button>
-        </div>
+                </div>
+                
+                <button onclick="testWordToHtml()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Conversion
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">HTML Output:</label>
+                    <textarea id="word-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('word-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
 
-        <div class="test-section">
-            <h3><i class="fas fa-code"></i> Test HTML to Markdown Converter</h3>
-            <p>Test konversi HTML ke Markdown dengan berbagai elemen HTML.</p>
-            
-            <label>Input HTML:</label>
-            <textarea class="test-input" id="html-test-input">&lt;h1&gt;Test HTML Document&lt;/h1&gt;
+            <!-- HTML to Markdown Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-code mr-4"></i>
+                    Test HTML to Markdown Converter
+                </h3>
+                <p class="text-gray-700 mb-6">Test konversi HTML ke Markdown dengan berbagai elemen HTML.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Input HTML:</label>
+                    <textarea id="html-test-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">&lt;h1&gt;Test HTML Document&lt;/h1&gt;
 &lt;p&gt;This is a &lt;strong&gt;test document&lt;/strong&gt; for the HTML to Markdown converter.&lt;/p&gt;
 
 &lt;h2&gt;Features&lt;/h2&gt;
@@ -233,25 +108,32 @@ This is a **test document** for the Word to HTML converter.
 &lt;/blockquote&gt;
 
 &lt;p&gt;Here's a &lt;a href="https://example.com"&gt;link&lt;/a&gt; and some &lt;code&gt;inline code&lt;/code&gt;.&lt;/p&gt;</textarea>
-            
-            <button class="test-btn" onclick="testHtmlToMarkdown()">
-                <i class="fas fa-play"></i> Test Conversion
-            </button>
-            
-            <label>Markdown Output:</label>
-            <textarea class="test-output" id="html-test-output" readonly></textarea>
-            
-            <button class="test-btn secondary" onclick="copyTestOutput('html-test-output')">
-                <i class="fas fa-copy"></i> Copy Output
-            </button>
-        </div>
+                </div>
+                
+                <button onclick="testHtmlToMarkdown()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Conversion
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Markdown Output:</label>
+                    <textarea id="html-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('html-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
 
-        <div class="test-section">
-            <h3><i class="fas fa-laptop-code"></i> Test HTML to BBCode Converter</h3>
-            <p>Test konversi HTML ke BBCode untuk forum dan platform BBCode.</p>
-            
-            <label>Input HTML:</label>
-            <textarea class="test-input" id="bbcode-test-input">&lt;h1&gt;Test BBCode Conversion&lt;/h1&gt;
+            <!-- HTML to BBCode Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-laptop-code mr-4"></i>
+                    Test HTML to BBCode Converter
+                </h3>
+                <p class="text-gray-700 mb-6">Test konversi HTML ke BBCode untuk forum dan platform BBCode.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Input HTML:</label>
+                    <textarea id="bbcode-test-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">&lt;h1&gt;Test BBCode Conversion&lt;/h1&gt;
 &lt;p&gt;This text has &lt;strong&gt;bold&lt;/strong&gt; and &lt;em&gt;italic&lt;/em&gt; formatting.&lt;/p&gt;
 
 &lt;h2&gt;Lists&lt;/h2&gt;
@@ -263,72 +145,100 @@ This is a **test document** for the Word to HTML converter.
 &lt;blockquote&gt;This is a test quote&lt;/blockquote&gt;
 
 &lt;p&gt;Here's a &lt;a href="https://example.com"&gt;link&lt;/a&gt; and &lt;code&gt;code&lt;/code&gt;.&lt;/p&gt;</textarea>
-            
-            <button class="test-btn" onclick="testHtmlToBBCode()">
-                <i class="fas fa-play"></i> Test Conversion
-            </button>
-            
-            <label>BBCode Output:</label>
-            <textarea class="test-output" id="bbcode-test-output" readonly></textarea>
-            
-            <button class="test-btn secondary" onclick="copyTestOutput('bbcode-test-output')">
-                <i class="fas fa-copy"></i> Copy Output
-            </button>
+                </div>
+                
+                <button onclick="testHtmlToBBCode()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Conversion
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">BBCode Output:</label>
+                    <textarea id="bbcode-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('bbcode-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
+
+            <!-- Blockquote Generator Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-quote-left mr-4"></i>
+                    Test Blockquote Generator
+                </h3>
+                <p class="text-gray-700 mb-6">Test generator blockquote dengan berbagai input dan opsi.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Quote Text:</label>
+                    <textarea id="quote-test-input" class="w-full h-24 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">The best way to predict the future is to invent it.</textarea>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Author (optional):</label>
+                            <input type="text" id="quote-test-author" value="Alan Kay" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Source (optional):</label>
+                            <input type="text" id="quote-test-source" value="Computer Scientist" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="testBlockquoteGenerator()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Generation
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Generated HTML:</label>
+                    <textarea id="quote-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('quote-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="test-section">
-            <h3><i class="fas fa-quote-left"></i> Test Blockquote Generator</h3>
-            <p>Test generator blockquote dengan berbagai input dan opsi.</p>
-            
-            <label>Quote Text:</label>
-            <textarea class="test-input" id="quote-test-input">The best way to predict the future is to invent it.</textarea>
-            
-            <label>Author:</label>
-            <input type="text" class="test-input" id="quote-test-author" value="Alan Kay" style="min-height: auto;">
-            
-            <label>Source:</label>
-            <input type="text" class="test-input" id="quote-test-source" value="Computer Scientist" style="min-height: auto;">
-            
-            <button class="test-btn" onclick="testBlockquoteGenerator()">
-                <i class="fas fa-play"></i> Test Generation
-            </button>
-            
-            <label>Generated HTML:</label>
-            <textarea class="test-output" id="quote-test-output" readonly></textarea>
-            
-            <button class="test-btn secondary" onclick="copyTestOutput('quote-test-output')">
-                <i class="fas fa-copy"></i> Copy Output
-            </button>
-        </div>
-
-        <div class="test-summary">
-            <h3><i class="fas fa-chart-bar"></i> Test Results Summary</h3>
-            <div class="summary-stats">
-                <div class="stat-box">
-                    <div class="stat-number" id="total-tests">0</div>
-                    <div class="stat-label">Total Tests</div>
+        <!-- Test Summary -->
+        <div class="bg-white rounded-2xl p-8 shadow-xl text-center mb-12">
+            <h3 class="text-3xl font-bold text-success mb-8 flex items-center justify-center">
+                <i class="fas fa-chart-bar mr-4"></i>
+                Test Results Summary
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-success mb-2" id="total-tests">0</div>
+                    <div class="text-gray-600 text-sm">Total Tests</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number" id="passed-tests">0</div>
-                    <div class="stat-label">Passed</div>
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-success mb-2" id="passed-tests">0</div>
+                    <div class="text-gray-600 text-sm">Passed</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number" id="failed-tests">0</div>
-                    <div class="stat-label">Failed</div>
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-red-500 mb-2" id="failed-tests">0</div>
+                    <div class="text-gray-600 text-sm">Failed</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number" id="success-rate">0%</div>
-                    <div class="stat-label">Success Rate</div>
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-success mb-2" id="success-rate">0%</div>
+                    <div class="text-gray-600 text-sm">Success Rate</div>
                 </div>
             </div>
             
-            <button class="test-btn" onclick="runAllTests()">
-                <i class="fas fa-rocket"></i> Run All Tests
+            <button onclick="runAllTests()" class="bg-success text-white px-8 py-4 rounded-2xl font-bold text-xl hover:bg-green-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                <i class="fas fa-rocket mr-3"></i> Run All Tests
             </button>
         </div>
 
-        <div class="test-results" id="test-results">
+        <!-- Test Results -->
+        <div id="test-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Test results will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Test Message -->
+    <div id="test-message" class="fixed top-6 right-6 bg-success text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle mr-3"></i>
+            <span id="test-message-text"></span>
         </div>
     </div>
 
@@ -585,18 +495,18 @@ This is a **test document** for the Word to HTML converter.
 
             testResults.forEach(result => {
                 const resultCard = document.createElement('div');
-                resultCard.className = 'result-card';
+                resultCard.className = 'bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100';
                 
-                const statusClass = result.status === 'PASS' ? 'status-success' : 'status-error';
+                const statusClass = result.status === 'PASS' ? 'bg-success' : 'bg-red-500';
                 
                 resultCard.innerHTML = `
-                    <h4>
-                        <span class="status-indicator ${statusClass}"></span>
+                    <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="w-3 h-3 ${statusClass} rounded-full mr-3"></span>
                         ${result.name}
                     </h4>
-                    <p><strong>Status:</strong> ${result.status}</p>
-                    <p><strong>Message:</strong> ${result.message}</p>
-                    <p><strong>Time:</strong> ${result.timestamp}</p>
+                    <p class="text-gray-700 mb-2"><strong>Status:</strong> <span class="font-mono">${result.status}</span></p>
+                    <p class="text-gray-700 mb-2"><strong>Message:</strong> ${result.message}</p>
+                    <p class="text-gray-700"><strong>Time:</strong> <span class="font-mono">${result.timestamp}</span></p>
                 `;
                 
                 container.appendChild(resultCard);
@@ -656,45 +566,26 @@ This is a **test document** for the Word to HTML converter.
         }
 
         // Show test message
-        function showTestMessage(message, type = 'info') {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message message-${type}`;
-            messageDiv.textContent = message;
-
-            messageDiv.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 20px;
-                border-radius: 8px;
-                color: white;
-                font-weight: 600;
-                z-index: 1000;
-                animation: slideInRight 0.3s ease;
-                max-width: 300px;
-                word-wrap: break-word;
-            `;
-
-            switch (type) {
-                case 'success':
-                    messageDiv.style.background = '#27ae60';
-                    break;
-                case 'error':
-                    messageDiv.style.background = '#e74c3c';
-                    break;
-                default:
-                    messageDiv.style.background = '#3498db';
+        function showTestMessage(message, type = 'success') {
+            const messageElement = document.getElementById('test-message');
+            const messageText = document.getElementById('test-message-text');
+            
+            // Set message text
+            messageText.textContent = message;
+            
+            // Set background color based on type
+            if (type === 'error') {
+                messageElement.className = 'fixed top-6 right-6 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50';
+            } else {
+                messageElement.className = 'fixed top-6 right-6 bg-success text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50';
             }
-
-            document.body.appendChild(messageDiv);
-
+            
+            // Show message
+            messageElement.classList.remove('translate-x-full');
+            
+            // Auto-hide after 3 seconds
             setTimeout(() => {
-                messageDiv.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => {
-                    if (messageDiv.parentNode) {
-                        messageDiv.parentNode.removeChild(messageDiv);
-                    }
-                }, 300);
+                messageElement.classList.add('translate-x-full');
             }, 3000);
         }
 
