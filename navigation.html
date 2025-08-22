@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Conversion Tools - Navigation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e74c3c',
+                        secondary: '#2c3e50',
+                        success: '#27ae60',
+                        info: '#3498db',
+                        warning: '#f39c12'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-100 min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Navigation Header -->
+        <div class="bg-gradient-to-r from-primary to-red-600 text-white p-12 rounded-3xl text-center mb-12 shadow-2xl">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <i class="fas fa-compass mr-6"></i>
+                Document Conversion Tools
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90">Navigasi lengkap untuk semua fitur dan halaman aplikasi konversi dokumen profesional</p>
+        </div>
+
+        <!-- Navigation Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Main Application -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:-translate-y-2 text-center">
+                <div class="text-5xl text-primary mb-6">
+                    <i class="fas fa-play"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Main Application</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">Aplikasi utama dengan semua tool konversi yang tersedia. Mulai konversi dokumen Anda di sini.</p>
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-2xl font-semibold hover:bg-red-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <i class="fas fa-rocket mr-2"></i>
+                    Launch App
+                </a>
+            </div>
+
+            <!-- Demo & Examples -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:-translate-y-2 text-center">
+                <div class="text-5xl text-primary mb-6">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Demo & Examples</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">Lihat fitur-fitur aplikasi dalam aksi dengan contoh-contoh yang sudah disiapkan.</p>
+                <a href="demo.html" class="inline-flex items-center px-6 py-3 bg-info text-white rounded-2xl font-semibold hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <i class="fas fa-eye mr-2"></i>
+                    View Demo
+                </a>
+            </div>
+
+            <!-- Testing Page -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:-translate-y-2 text-center">
+                <div class="text-5xl text-primary mb-6">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Testing Page</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">Halaman testing untuk memverifikasi semua fungsi konversi berjalan dengan benar.</p>
+                <a href="test.html" class="inline-flex items-center px-6 py-3 bg-success text-white rounded-2xl font-semibold hover:bg-green-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <i class="fas fa-vial mr-2"></i>
+                    Run Tests
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:-translate-y-2 text-center">
+                <div class="text-5xl text-primary mb-6">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Documentation</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">Dokumentasi lengkap aplikasi, fitur, dan cara penggunaan yang detail.</p>
+                <a href="README.md" class="inline-flex items-center px-6 py-3 bg-info text-white rounded-2xl font-semibold hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <i class="fas fa-book mr-2"></i>
+                    Read Docs
+                </a>
+            </div>
+
+            <!-- Source Code -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:-translate-y-2 text-center">
+                <div class="text-5xl text-primary mb-6">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Source Code</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">Akses langsung ke file source code untuk development dan customization.</p>
+                <a href="script.js" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-2xl font-semibold hover:bg-red-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <i class="fas fa-code mr-2"></i>
+                    View Code
+                </a>
+            </div>
+
+            <!-- Project Structure -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-transparent hover:border-primary transition-all duration-300 hover:-translate-y-2 text-center">
+                <div class="text-5xl text-primary mb-6">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Project Structure</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">Overview lengkap arsitektur dan struktur file aplikasi.</p>
+                <a href="STRUCTURE.md" class="inline-flex items-center px-6 py-3 bg-secondary text-white rounded-2xl font-semibold hover:bg-gray-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <i class="fas fa-sitemap mr-2"></i>
+                    View Structure
+                </a>
+            </div>
+        </div>
+
+        <!-- Feature Highlights -->
+        <div class="bg-white rounded-2xl p-8 shadow-xl mb-12 border-l-4 border-primary">
+            <h3 class="text-3xl font-bold text-primary mb-6 flex items-center">
+                <i class="fas fa-star mr-4"></i>
+                Fitur Utama Aplikasi
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fas fa-file-word text-3xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Word to HTML</h4>
+                    <p class="text-gray-600 text-sm">Konversi dokumen Word ke HTML yang bersih dan terstruktur</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fas fa-code text-3xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">HTML to Markdown</h4>
+                    <p class="text-gray-600 text-sm">Transformasi HTML ke Markdown yang sempurna</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fas fa-laptop-code text-3xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">HTML to BBCode</h4>
+                    <p class="text-gray-600 text-sm">Konversi HTML ke BBCode untuk forum</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fas fa-quote-left text-3xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Blockquote Generator</h4>
+                    <p class="text-gray-600 text-sm">Generator blockquote HTML dengan preview real-time</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Start Section -->
+        <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-12 rounded-3xl text-center mb-12 shadow-2xl">
+            <h3 class="text-4xl font-bold mb-6">
+                <i class="fas fa-rocket mr-4"></i>
+                Mulai Sekarang!
+            </h3>
+            <p class="text-xl mb-8 opacity-90">Langsung coba aplikasi konversi dokumen yang powerful dan mudah digunakan</p>
+            <a href="index.html" class="inline-flex items-center px-10 py-5 bg-white text-purple-600 text-2xl font-bold rounded-2xl hover:bg-gray-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                <i class="fas fa-play mr-3"></i>
+                Launch Application
+            </a>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="bg-white rounded-2xl p-8 shadow-xl mb-12 border-l-4 border-primary">
+            <h3 class="text-3xl font-bold text-primary mb-6 flex items-center">
+                <i class="fas fa-cogs mr-4"></i>
+                Teknologi yang Digunakan
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fab fa-html5 text-4xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">HTML5</h4>
+                    <p class="text-gray-600 text-sm">Struktur semantik yang modern dan accessible</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fab fa-css3-alt text-4xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Tailwind CSS</h4>
+                    <p class="text-gray-600 text-sm">Utility-first CSS framework untuk rapid development</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fab fa-js-square text-4xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">JavaScript ES6+</h4>
+                    <p class="text-gray-600 text-sm">Fungsi konversi yang powerful dan modern</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fas fa-mobile-alt text-4xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Responsive Design</h4>
+                    <p class="text-gray-600 text-sm">Mobile-first approach untuk semua device</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fas fa-icons text-4xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Font Awesome</h4>
+                    <p class="text-gray-600 text-sm">Icon library yang komprehensif</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <i class="fas fa-bolt text-4xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Performance</h4>
+                    <p class="text-gray-600 text-sm">Optimized untuk kecepatan dan efisiensi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Information -->
+        <div class="bg-white rounded-2xl p-8 shadow-xl mb-12 border-l-4 border-primary">
+            <h3 class="text-3xl font-bold text-primary mb-6 flex items-center">
+                <i class="fas fa-info-circle mr-4"></i>
+                Informasi File
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-file-code text-primary mr-2"></i>
+                        index.html
+                    </h4>
+                    <p class="text-gray-600 text-sm">Halaman utama aplikasi dengan semua tool konversi menggunakan Tailwind CSS</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-file-code text-primary mr-2"></i>
+                        script.js
+                    </h4>
+                    <p class="text-gray-600 text-sm">JavaScript dengan semua fungsi konversi dan interaktivitas</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-file-code text-primary mr-2"></i>
+                        demo.html
+                    </h4>
+                    <p class="text-gray-600 text-sm">Halaman demo dengan contoh-contoh fitur menggunakan Tailwind CSS</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-file-code text-primary mr-2"></i>
+                        test.html
+                    </h4>
+                    <p class="text-gray-600 text-sm">Halaman testing untuk verifikasi fungsi dengan Tailwind CSS</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-file-code text-primary mr-2"></i>
+                        README.md
+                    </h4>
+                    <p class="text-gray-600 text-sm">Dokumentasi lengkap aplikasi dan cara penggunaan</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl border-2 border-gray-100">
+                    <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-file-code text-primary mr-2"></i>
+                        STRUCTURE.md
+                    </h4>
+                    <p class="text-gray-600 text-sm">Overview arsitektur dan struktur file aplikasi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="text-center mb-12">
+            <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-12 rounded-3xl shadow-2xl">
+                <h3 class="text-4xl font-bold mb-6">
+                    <i class="fas fa-check-circle mr-4"></i>
+                    Siap Digunakan!
+                </h3>
+                <p class="text-xl mb-8 opacity-90">Aplikasi telah siap dengan teknologi modern dan interface yang user-friendly</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="index.html" class="inline-flex items-center px-8 py-4 bg-white text-green-600 text-xl font-bold rounded-2xl hover:bg-gray-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <i class="fas fa-play mr-3"></i>
+                        Mulai Menggunakan
+                    </a>
+                    <a href="README.md" class="inline-flex items-center px-8 py-4 bg-transparent text-white text-xl font-bold rounded-2xl border-2 border-white hover:bg-white hover:text-green-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <i class="fas fa-book mr-3"></i>
+                        Baca Dokumentasi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactivity to the navigation page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to navigation cards
+            const navCards = document.querySelectorAll('.bg-white.rounded-2xl');
+            navCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                    this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                });
+            });
+
+            // Add click effect to navigation buttons
+            const navBtns = document.querySelectorAll('a');
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Add floating animation to icons
+            const icons = document.querySelectorAll('.text-5xl, .text-4xl');
+            icons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.2}s`;
+                icon.classList.add('animate-bounce');
+            });
+        });
+    </script>
+</body>
+</html>

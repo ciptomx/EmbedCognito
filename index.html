@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Conversion Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e74c3c',
+                        secondary: '#2c3e50',
+                        success: '#27ae60',
+                        info: '#3498db',
+                        warning: '#f39c12'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-100 min-h-screen p-4">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-tools text-primary mr-4"></i>
+                Document Conversion Tools
+            </h1>
+            <p class="text-xl text-gray-600">Professional tools for converting between different document formats</p>
+        </header>
+
+        <!-- Tools Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            
+            <!-- Word to HTML Converter -->
+            <div class="bg-white border-4 border-primary rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-center mb-6">
+                    <div class="text-4xl text-primary mb-4">
+                        <i class="fas fa-file-word mr-4"></i>
+                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 cursor-pointer hover:text-primary transition-colors" onclick="toggleTool('word-to-html')">
+                        Word to HTML Converter
+                    </h3>
+                </div>
+                
+                <div id="word-to-html-content" class="hidden">
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Paste Word content or upload file:</label>
+                        <textarea id="word-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Paste your Word document content here..."></textarea>
+                        <div class="mt-4">
+                            <input type="file" id="word-file" accept=".doc,.docx,.txt" class="hidden">
+                            <label for="word-file" class="inline-flex items-center px-4 py-2 bg-info text-white rounded-lg cursor-pointer hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-upload mr-2"></i> Upload File
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button onclick="convertWordToHtml()" class="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg hover:bg-red-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mb-6">
+                        <i class="fas fa-sync-alt mr-2"></i> Convert to HTML
+                    </button>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">HTML Output:</label>
+                        <textarea id="html-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50" placeholder="Converted HTML will appear here..."></textarea>
+                        <button onclick="copyToClipboard('html-output')" class="mt-2 px-4 py-2 bg-success text-white rounded-lg hover:bg-green-600 transition-colors">
+                            <i class="fas fa-copy mr-2"></i> Copy HTML
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTML to Markdown Converter -->
+            <div class="bg-white border-4 border-primary rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-center mb-6">
+                    <div class="text-4xl text-primary mb-4">
+                        <i class="fas fa-code mr-4"></i>
+                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 cursor-pointer hover:text-primary transition-colors" onclick="toggleTool('html-to-markdown')">
+                        HTML to Markdown Converter
+                    </h3>
+                </div>
+                
+                <div id="html-to-markdown-content" class="hidden">
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Paste HTML code:</label>
+                        <textarea id="html-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Paste your HTML code here..."></textarea>
+                    </div>
+                    
+                    <button onclick="convertHtmlToMarkdown()" class="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg hover:bg-red-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mb-6">
+                        <i class="fas fa-sync-alt mr-2"></i> Convert to Markdown
+                    </button>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Markdown Output:</label>
+                        <textarea id="markdown-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50" placeholder="Converted Markdown will appear here..."></textarea>
+                        <button onclick="copyToClipboard('markdown-output')" class="mt-2 px-4 py-2 bg-success text-white rounded-lg hover:bg-green-600 transition-colors">
+                            <i class="fas fa-copy mr-2"></i> Copy Markdown
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTML to BBCode Converter -->
+            <div class="bg-white border-4 border-primary rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-center mb-6">
+                    <div class="text-4xl text-primary mb-4">
+                        <i class="fas fa-code mr-4"></i>
+                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 cursor-pointer hover:text-primary transition-colors" onclick="toggleTool('html-to-bbcode')">
+                        HTML to BBCode Converter
+                    </h3>
+                </div>
+                
+                <div id="html-to-bbcode-content" class="hidden">
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Paste HTML code:</label>
+                        <textarea id="html-bbcode-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Paste your HTML code here..."></textarea>
+                    </div>
+                    
+                    <button onclick="convertHtmlToBBCode()" class="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg hover:bg-red-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mb-6">
+                        <i class="fas fa-sync-alt mr-2"></i> Convert to BBCode
+                    </button>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">BBCode Output:</label>
+                        <textarea id="bbcode-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50" placeholder="Converted BBCode will appear here..."></textarea>
+                        <button onclick="copyToClipboard('bbcode-output')" class="mt-2 px-4 py-2 bg-success text-white rounded-lg hover:bg-green-600 transition-colors">
+                            <i class="fas fa-copy mr-2"></i> Copy BBCode
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blockquote Generator -->
+            <div class="bg-gray-50 border-4 border-primary rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-center mb-6">
+                    <div class="text-4xl text-primary mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 cursor-pointer hover:text-primary transition-colors" onclick="toggleTool('blockquote-generator')">
+                        Blockquote Generator
+                    </h3>
+                </div>
+                
+                <div id="blockquote-generator-content" class="hidden">
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Enter your quote:</label>
+                        <textarea id="quote-input" class="w-full h-24 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Type your quote here..."></textarea>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Author (optional):</label>
+                                <input type="text" id="quote-author" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Quote author">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Source (optional):</label>
+                                <input type="text" id="quote-source" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Quote source">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="generateBlockquote()" class="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg hover:bg-red-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mb-6">
+                        <i class="fas fa-magic mr-2"></i> Generate Blockquote
+                    </button>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Generated Blockquote:</label>
+                        <div class="mb-4 p-6 bg-gray-100 rounded-lg border-l-4 border-primary">
+                            <div id="blockquote-preview" class="text-gray-700 italic text-lg"></div>
+                        </div>
+                        <textarea id="blockquote-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50" placeholder="Generated HTML will appear here..."></textarea>
+                        <button onclick="copyToClipboard('blockquote-output')" class="mt-2 px-4 py-2 bg-success text-white rounded-lg hover:bg-green-600 transition-colors">
+                            <i class="fas fa-copy mr-2"></i> Copy HTML
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="success-message" class="fixed top-6 right-6 bg-success text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle mr-3"></i>
+            <span id="message-text"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

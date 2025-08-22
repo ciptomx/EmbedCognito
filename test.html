@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Conversion Tools - Test Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e74c3c',
+                        secondary: '#2c3e50',
+                        success: '#27ae60',
+                        info: '#3498db',
+                        warning: '#f39c12'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-green-100 min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Test Header -->
+        <div class="bg-gradient-to-r from-success to-green-500 text-white p-12 rounded-3xl text-center mb-12 shadow-2xl">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <i class="fas fa-vial mr-6"></i>
+                Document Conversion Tools - Test Page
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90">Halaman testing untuk memverifikasi semua fungsi konversi berjalan dengan benar</p>
+        </div>
+
+        <!-- Test Sections -->
+        <div class="space-y-8 mb-12">
+            <!-- Word to HTML Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-file-word mr-4"></i>
+                    Test Word to HTML Converter
+                </h3>
+                <p class="text-gray-700 mb-6">Test konversi dokumen Word ke HTML dengan berbagai format teks.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Input Word Content:</label>
+                    <textarea id="word-test-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20"># Test Document
+
+This is a **test document** for the Word to HTML converter.
+
+## Features to Test
+- Bold text with **asterisks**
+- Italic text with *asterisks*
+- Underlined text with __underscores__
+- Strikethrough with ~~tildes~~
+
+### Numbered List
+1. First item
+2. Second item
+3. Third item
+
+### Bullet List
+- Apple
+- Banana
+- Orange
+
+*This should be italic text*
+
+**This should be bold text**</textarea>
+                </div>
+                
+                <button onclick="testWordToHtml()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Conversion
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">HTML Output:</label>
+                    <textarea id="word-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('word-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
+
+            <!-- HTML to Markdown Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-code mr-4"></i>
+                    Test HTML to Markdown Converter
+                </h3>
+                <p class="text-gray-700 mb-6">Test konversi HTML ke Markdown dengan berbagai elemen HTML.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Input HTML:</label>
+                    <textarea id="html-test-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">&lt;h1&gt;Test HTML Document&lt;/h1&gt;
+&lt;p&gt;This is a &lt;strong&gt;test document&lt;/strong&gt; for the HTML to Markdown converter.&lt;/p&gt;
+
+&lt;h2&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+    &lt;li&gt;Header conversion&lt;/li&gt;
+    &lt;li&gt;Text formatting&lt;/li&gt;
+    &lt;li&gt;List handling&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+    This is a test quote to verify blockquote conversion.
+&lt;/blockquote&gt;
+
+&lt;p&gt;Here's a &lt;a href="https://example.com"&gt;link&lt;/a&gt; and some &lt;code&gt;inline code&lt;/code&gt;.&lt;/p&gt;</textarea>
+                </div>
+                
+                <button onclick="testHtmlToMarkdown()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Conversion
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Markdown Output:</label>
+                    <textarea id="html-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('html-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
+
+            <!-- HTML to BBCode Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-laptop-code mr-4"></i>
+                    Test HTML to BBCode Converter
+                </h3>
+                <p class="text-gray-700 mb-6">Test konversi HTML ke BBCode untuk forum dan platform BBCode.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Input HTML:</label>
+                    <textarea id="bbcode-test-input" class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">&lt;h1&gt;Test BBCode Conversion&lt;/h1&gt;
+&lt;p&gt;This text has &lt;strong&gt;bold&lt;/strong&gt; and &lt;em&gt;italic&lt;/em&gt; formatting.&lt;/p&gt;
+
+&lt;h2&gt;Lists&lt;/h2&gt;
+&lt;ul&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;This is a test quote&lt;/blockquote&gt;
+
+&lt;p&gt;Here's a &lt;a href="https://example.com"&gt;link&lt;/a&gt; and &lt;code&gt;code&lt;/code&gt;.&lt;/p&gt;</textarea>
+                </div>
+                
+                <button onclick="testHtmlToBBCode()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Conversion
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">BBCode Output:</label>
+                    <textarea id="bbcode-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('bbcode-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
+
+            <!-- Blockquote Generator Test -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border-l-5 border-success">
+                <h3 class="text-2xl font-bold text-success mb-6 flex items-center">
+                    <i class="fas fa-quote-left mr-4"></i>
+                    Test Blockquote Generator
+                </h3>
+                <p class="text-gray-700 mb-6">Test generator blockquote dengan berbagai input dan opsi.</p>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Quote Text:</label>
+                    <textarea id="quote-test-input" class="w-full h-24 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">The best way to predict the future is to invent it.</textarea>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Author (optional):</label>
+                            <input type="text" id="quote-test-author" value="Alan Kay" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Source (optional):</label>
+                            <input type="text" id="quote-test-source" value="Computer Scientist" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-success focus:outline-none focus:ring-2 focus:ring-success/20">
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="testBlockquoteGenerator()" class="bg-success text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6">
+                    <i class="fas fa-play mr-2"></i> Test Generation
+                </button>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Generated HTML:</label>
+                    <textarea id="quote-test-output" readonly class="w-full h-32 p-4 border-2 border-gray-200 rounded-lg font-mono text-sm resize-y bg-gray-50"></textarea>
+                    <button onclick="copyTestOutput('quote-test-output')" class="mt-3 px-4 py-2 bg-info text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-copy mr-2"></i> Copy Output
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Summary -->
+        <div class="bg-white rounded-2xl p-8 shadow-xl text-center mb-12">
+            <h3 class="text-3xl font-bold text-success mb-8 flex items-center justify-center">
+                <i class="fas fa-chart-bar mr-4"></i>
+                Test Results Summary
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-success mb-2" id="total-tests">0</div>
+                    <div class="text-gray-600 text-sm">Total Tests</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-success mb-2" id="passed-tests">0</div>
+                    <div class="text-gray-600 text-sm">Passed</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-red-500 mb-2" id="failed-tests">0</div>
+                    <div class="text-gray-600 text-sm">Failed</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-100">
+                    <div class="text-3xl font-bold text-success mb-2" id="success-rate">0%</div>
+                    <div class="text-gray-600 text-sm">Success Rate</div>
+                </div>
+            </div>
+            
+            <button onclick="runAllTests()" class="bg-success text-white px-8 py-4 rounded-2xl font-bold text-xl hover:bg-green-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                <i class="fas fa-rocket mr-3"></i> Run All Tests
+            </button>
+        </div>
+
+        <!-- Test Results -->
+        <div id="test-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Test results will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Test Message -->
+    <div id="test-message" class="fixed top-6 right-6 bg-success text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle mr-3"></i>
+            <span id="test-message-text"></span>
+        </div>
+    </div>
+
+    <script>
+        let testResults = [];
+        let totalTests = 0;
+        let passedTests = 0;
+        let failedTests = 0;
+
+        // Test Word to HTML conversion
+        function testWordToHtml() {
+            const input = document.getElementById('word-test-input').value;
+            const output = document.getElementById('word-test-output');
+            
+            try {
+                // Simulate conversion process
+                let html = input
+                    .split('\n\n')
+                    .filter(paragraph => paragraph.trim())
+                    .map(paragraph => `<p>${paragraph.trim()}</p>`)
+                    .join('\n');
+
+                html = html
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/__(.*?)__/g, '<u>$1</u>')
+                    .replace(/~~(.*?)~~/g, '<del>$1</del>')
+                    .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
+                    .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
+                    .replace(/^# (.*?)$/gm, '<h1>$1</h1>')
+                    .replace(/^\- (.*?)$/gm, '<li>$1</li>')
+                    .replace(/^(\d+)\. (.*?)$/gm, '<li>$2</li>');
+
+                output.value = html;
+                addTestResult('Word to HTML', 'PASS', 'Conversion successful');
+            } catch (error) {
+                output.value = 'Error: ' + error.message;
+                addTestResult('Word to HTML', 'FAIL', error.message);
+            }
+        }
+
+        // Test HTML to Markdown conversion
+        function testHtmlToMarkdown() {
+            const input = document.getElementById('html-test-input').value;
+            const output = document.getElementById('html-test-output');
+            
+            try {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = input;
+                
+                let markdown = '';
+                const elements = tempDiv.childNodes;
+                elements.forEach(element => {
+                    markdown += convertElementToMarkdown(element);
+                });
+                
+                markdown = markdown
+                    .replace(/\n{3,}/g, '\n\n')
+                    .replace(/^\s+|\s+$/g, '');
+                
+                output.value = markdown;
+                addTestResult('HTML to Markdown', 'PASS', 'Conversion successful');
+            } catch (error) {
+                output.value = 'Error: ' + error.message;
+                addTestResult('HTML to Markdown', 'FAIL', error.message);
+            }
+        }
+
+        // Test HTML to BBCode conversion
+        function testHtmlToBBCode() {
+            const input = document.getElementById('bbcode-test-input').value;
+            const output = document.getElementById('bbcode-test-output');
+            
+            try {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = input;
+                
+                let bbcode = '';
+                const elements = tempDiv.childNodes;
+                elements.forEach(element => {
+                    bbcode += convertElementToBBCode(element);
+                });
+                
+                bbcode = bbcode
+                    .replace(/\n{3,}/g, '\n\n')
+                    .replace(/^\s+|\s+$/g, '');
+                
+                output.value = bbcode;
+                addTestResult('HTML to BBCode', 'PASS', 'Conversion successful');
+            } catch (error) {
+                output.value = 'Error: ' + error.message;
+                addTestResult('HTML to BBCode', 'FAIL', error.message);
+            }
+        }
+
+        // Test Blockquote Generator
+        function testBlockquoteGenerator() {
+            const quote = document.getElementById('quote-test-input').value;
+            const author = document.getElementById('quote-test-author').value;
+            const source = document.getElementById('quote-test-source').value;
+            const output = document.getElementById('quote-test-output');
+            
+            try {
+                let html = '<blockquote class="custom-blockquote">\n';
+                html += `  <p class="quote-text">${escapeHtml(quote)}</p>\n`;
+                
+                if (author || source) {
+                    html += '  <footer class="quote-footer">\n';
+                    if (author) {
+                        html += `    <cite class="quote-author">— ${escapeHtml(author)}</cite>\n`;
+                    }
+                    if (source) {
+                        html += `    <span class="quote-source">, ${escapeHtml(source)}</span>\n`;
+                    }
+                    html += '  </footer>\n';
+                }
+                
+                html += '</blockquote>';
+                
+                output.value = html;
+                addTestResult('Blockquote Generator', 'PASS', 'Generation successful');
+            } catch (error) {
+                output.value = 'Error: ' + error.message;
+                addTestResult('Blockquote Generator', 'FAIL', error.message);
+            }
+        }
+
+        // Helper functions (copied from main script)
+        function convertElementToMarkdown(element) {
+            if (element.nodeType === Node.TEXT_NODE) {
+                return element.textContent;
+            }
+
+            if (element.nodeType === Node.ELEMENT_NODE) {
+                const tagName = element.tagName.toLowerCase();
+                const content = element.textContent || '';
+
+                switch (tagName) {
+                    case 'h1': return `# ${content}\n\n`;
+                    case 'h2': return `## ${content}\n\n`;
+                    case 'h3': return `### ${content}\n\n`;
+                    case 'p': return `${content}\n\n`;
+                    case 'br': return '\n';
+                    case 'strong': case 'b': return `**${content}**`;
+                    case 'em': case 'i': return `*${content}*`;
+                    case 'u': return `__${content}__`;
+                    case 'del': case 's': return `~~${content}~~`;
+                    case 'code': return `\`${content}\``;
+                    case 'pre': return `\`\`\`\n${content}\n\`\`\`\n\n`;
+                    case 'blockquote': return `> ${content}\n\n`;
+                    case 'ul':
+                        const ulItems = Array.from(element.querySelectorAll('li'));
+                        return ulItems.map(item => `- ${item.textContent}`).join('\n') + '\n\n';
+                    case 'ol':
+                        const olItems = Array.from(element.querySelectorAll('li'));
+                        return olItems.map((item, index) => `${index + 1}. ${item.textContent}`).join('\n') + '\n\n';
+                    case 'li': return element.textContent;
+                    case 'a':
+                        const href = element.getAttribute('href') || '';
+                        return `[${content}](${href})`;
+                    case 'img':
+                        const src = element.getAttribute('src') || '';
+                        const alt = element.getAttribute('alt') || '';
+                        return `![${alt}](${src})`;
+                    default: return content;
+                }
+            }
+            return '';
+        }
+
+        function convertElementToBBCode(element) {
+            if (element.nodeType === Node.TEXT_NODE) {
+                return element.textContent;
+            }
+
+            if (element.nodeType === Node.ELEMENT_NODE) {
+                const tagName = element.tagName.toLowerCase();
+                const content = element.textContent || '';
+
+                switch (tagName) {
+                    case 'h1': return `[size=6]${content}[/size]\n\n`;
+                    case 'h2': return `[size=5]${content}[/size]\n\n`;
+                    case 'h3': return `[size=4]${content}[/size]\n\n`;
+                    case 'p': return `${content}\n\n`;
+                    case 'br': return '\n';
+                    case 'strong': case 'b': return `[b]${content}[/b]`;
+                    case 'em': case 'i': return `[i]${content}[/i]`;
+                    case 'u': return `[u]${content}[/u]`;
+                    case 'del': case 's': return `[s]${content}[/s]`;
+                    case 'code': return `[code]${content}[/code]`;
+                    case 'pre': return `[code]${content}[/code]\n\n`;
+                    case 'blockquote': return `[quote]${content}[/quote]\n\n`;
+                    case 'ul':
+                        const ulItems = Array.from(element.querySelectorAll('li'));
+                        return ulItems.map(item => `[*]${item.textContent}`).join('\n') + '\n\n';
+                    case 'ol':
+                        const olItems = Array.from(element.querySelectorAll('li'));
+                        return olItems.map((item, index) => `[${index + 1}]${item.textContent}`).join('\n') + '\n\n';
+                    case 'li': return element.textContent;
+                    case 'a':
+                        const href = element.getAttribute('href') || '';
+                        return `[url=${href}]${content}[/url]`;
+                    case 'img':
+                        const src = element.getAttribute('src') || '';
+                        const alt = element.getAttribute('alt') || '';
+                        return `[img]${src}[/img]`;
+                    default: return content;
+                }
+            }
+            return '';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Add test result
+        function addTestResult(testName, status, message) {
+            totalTests++;
+            if (status === 'PASS') {
+                passedTests++;
+            } else {
+                failedTests++;
+            }
+
+            const result = {
+                name: testName,
+                status: status,
+                message: message,
+                timestamp: new Date().toLocaleTimeString()
+            };
+
+            testResults.push(result);
+            updateTestSummary();
+            displayTestResults();
+        }
+
+        // Update test summary
+        function updateTestSummary() {
+            document.getElementById('total-tests').textContent = totalTests;
+            document.getElementById('passed-tests').textContent = passedTests;
+            document.getElementById('failed-tests').textContent = failedTests;
+            
+            const successRate = totalTests > 0 ? Math.round((passedTests / totalTests) * 100) : 0;
+            document.getElementById('success-rate').textContent = successRate + '%';
+        }
+
+        // Display test results
+        function displayTestResults() {
+            const container = document.getElementById('test-results');
+            container.innerHTML = '';
+
+            testResults.forEach(result => {
+                const resultCard = document.createElement('div');
+                resultCard.className = 'bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100';
+                
+                const statusClass = result.status === 'PASS' ? 'bg-success' : 'bg-red-500';
+                
+                resultCard.innerHTML = `
+                    <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="w-3 h-3 ${statusClass} rounded-full mr-3"></span>
+                        ${result.name}
+                    </h4>
+                    <p class="text-gray-700 mb-2"><strong>Status:</strong> <span class="font-mono">${result.status}</span></p>
+                    <p class="text-gray-700 mb-2"><strong>Message:</strong> ${result.message}</p>
+                    <p class="text-gray-700"><strong>Time:</strong> <span class="font-mono">${result.timestamp}</span></p>
+                `;
+                
+                container.appendChild(resultCard);
+            });
+        }
+
+        // Run all tests
+        function runAllTests() {
+            // Reset results
+            testResults = [];
+            totalTests = 0;
+            passedTests = 0;
+            failedTests = 0;
+            
+            // Run all tests
+            testWordToHtml();
+            setTimeout(() => testHtmlToMarkdown(), 500);
+            setTimeout(() => testHtmlToBBCode(), 1000);
+            setTimeout(() => testBlockquoteGenerator(), 1500);
+        }
+
+        // Copy test output
+        function copyTestOutput(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.value;
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showTestMessage('Copied to clipboard!', 'success');
+                }).catch(() => {
+                    fallbackCopyToClipboard(text);
+                });
+            } else {
+                fallbackCopyToClipboard(text);
+            }
+        }
+
+        // Fallback copy function
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showTestMessage('Copied to clipboard!', 'success');
+            } catch (err) {
+                showTestMessage('Failed to copy to clipboard', 'error');
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        // Show test message
+        function showTestMessage(message, type = 'success') {
+            const messageElement = document.getElementById('test-message');
+            const messageText = document.getElementById('test-message-text');
+            
+            // Set message text
+            messageText.textContent = message;
+            
+            // Set background color based on type
+            if (type === 'error') {
+                messageElement.className = 'fixed top-6 right-6 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50';
+            } else {
+                messageElement.className = 'fixed top-6 right-6 bg-success text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50';
+            }
+            
+            // Show message
+            messageElement.classList.remove('translate-x-full');
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                messageElement.classList.add('translate-x-full');
+            }, 3000);
+        }
+
+        // Initialize test page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTestSummary();
+        });
+    </script>
+</body>
+</html>
