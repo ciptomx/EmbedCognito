@@ -1,0 +1,36 @@
+{
+  "name": "document-conversion-tools",
+  "version": "1.0.0",
+  "description": "Professional web application for converting documents between different formats with modern UI",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "document-converter",
+    "html-converter",
+    "markdown-converter",
+    "bbcode-converter",
+    "word-to-html",
+    "blockquote-generator",
+    "web-tools",
+    "conversion-tools"
+  ],
+  "author": "Document Conversion Tools Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/document-conversion-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/document-conversion-tools/issues"
+  },
+  "homepage": "https://github.com/yourusername/document-conversion-tools#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

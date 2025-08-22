@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Conversion Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tools"></i> Document Conversion Tools</h1>
+            <p>Professional tools for converting between different document formats</p>
+        </header>
+
+        <div class="tools-grid">
+            <!-- Word to HTML Converter -->
+            <div class="tool-card" id="word-to-html">
+                <div class="tool-icon">
+                    <i class="fas fa-file-word"></i>
+                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Word to HTML Converter</h3>
+                <div class="tool-content">
+                    <div class="input-section">
+                        <label for="word-input">Paste Word content or upload file:</label>
+                        <textarea id="word-input" placeholder="Paste your Word document content here..."></textarea>
+                        <div class="file-upload">
+                            <input type="file" id="word-file" accept=".doc,.docx,.txt">
+                            <label for="word-file" class="upload-btn">
+                                <i class="fas fa-upload"></i> Upload File
+                            </label>
+                        </div>
+                    </div>
+                    <button class="convert-btn" onclick="convertWordToHtml()">
+                        <i class="fas fa-sync-alt"></i> Convert to HTML
+                    </button>
+                    <div class="output-section">
+                        <label for="html-output">HTML Output:</label>
+                        <textarea id="html-output" readonly placeholder="Converted HTML will appear here..."></textarea>
+                        <button class="copy-btn" onclick="copyToClipboard('html-output')">
+                            <i class="fas fa-copy"></i> Copy HTML
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTML to Markdown Converter -->
+            <div class="tool-card" id="html-to-markdown">
+                <div class="tool-icon">
+                    <i class="fas fa-code"></i>
+                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>HTML to Markdown Converter</h3>
+                <div class="tool-content">
+                    <div class="input-section">
+                        <label for="html-input">Paste HTML code:</label>
+                        <textarea id="html-input" placeholder="Paste your HTML code here..."></textarea>
+                    </div>
+                    <button class="convert-btn" onclick="convertHtmlToMarkdown()">
+                        <i class="fas fa-sync-alt"></i> Convert to Markdown
+                    </button>
+                    <div class="output-section">
+                        <label for="markdown-output">Markdown Output:</label>
+                        <textarea id="markdown-output" readonly placeholder="Converted Markdown will appear here..."></textarea>
+                        <button class="copy-btn" onclick="copyToClipboard('markdown-output')">
+                            <i class="fas fa-copy"></i> Copy Markdown
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTML to BBCode Converter -->
+            <div class="tool-card" id="html-to-bbcode">
+                <div class="tool-icon">
+                    <i class="fas fa-code"></i>
+                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>HTML to BBCode Converter</h3>
+                <div class="tool-content">
+                    <div class="input-section">
+                        <label for="html-bbcode-input">Paste HTML code:</label>
+                        <textarea id="html-bbcode-input" placeholder="Paste your HTML code here..."></textarea>
+                    </div>
+                    <button class="convert-btn" onclick="convertHtmlToBBCode()">
+                        <i class="fas fa-sync-alt"></i> Convert to BBCode
+                    </button>
+                    <div class="output-section">
+                        <label for="bbcode-output">BBCode Output:</label>
+                        <textarea id="bbcode-output" readonly placeholder="Converted BBCode will appear here..."></textarea>
+                        <button class="copy-btn" onclick="copyToClipboard('bbcode-output')">
+                            <i class="fas fa-copy"></i> Copy BBCode
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blockquote Generator -->
+            <div class="tool-card highlighted" id="blockquote-generator">
+                <div class="tool-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <h3>Blockquote Generator</h3>
+                <div class="tool-content">
+                    <div class="input-section">
+                        <label for="quote-input">Enter your quote:</label>
+                        <textarea id="quote-input" placeholder="Type your quote here..."></textarea>
+                        <div class="quote-options">
+                            <label for="quote-author">Author (optional):</label>
+                            <input type="text" id="quote-author" placeholder="Quote author">
+                            <label for="quote-source">Source (optional):</label>
+                            <input type="text" id="quote-source" placeholder="Quote source">
+                        </div>
+                    </div>
+                    <button class="convert-btn" onclick="generateBlockquote()">
+                        <i class="fas fa-magic"></i> Generate Blockquote
+                    </button>
+                    <div class="output-section">
+                        <label for="blockquote-output">Generated Blockquote:</label>
+                        <div class="preview-section">
+                            <div id="blockquote-preview" class="blockquote-preview"></div>
+                        </div>
+                        <textarea id="blockquote-output" readonly placeholder="Generated HTML will appear here..."></textarea>
+                        <button class="copy-btn" onclick="copyToClipboard('blockquote-output')">
+                            <i class="fas fa-copy"></i> Copy HTML
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
