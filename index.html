@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Format Converter Suite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-exchange-alt"></i> Multi-Format Converter Suite</h1>
+            <p>Convert between different formats with ease</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-grid">
+                <button class="nav-btn active" data-tool="word-to-html">
+                    <i class="fas fa-file-word"></i>
+                    <span>Word to HTML</span>
+                </button>
+                <button class="nav-btn" data-tool="html-to-markdown">
+                    <i class="fab fa-markdown"></i>
+                    <span>HTML to Markdown</span>
+                </button>
+                <button class="nav-btn" data-tool="html-to-bbcode">
+                    <i class="fas fa-code"></i>
+                    <span>HTML to BBCode</span>
+                </button>
+                <button class="nav-btn" data-tool="blockquote-generator">
+                    <i class="fas fa-quote-right"></i>
+                    <span>Blockquote Generator</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Word to HTML Converter -->
+        <section id="word-to-html" class="converter-section active">
+            <div class="converter-header">
+                <h2><i class="fas fa-file-word"></i> Word to HTML Converter</h2>
+                <p>Paste your Word document content and convert it to clean HTML</p>
+            </div>
+            <div class="converter-content">
+                <div class="input-section">
+                    <label for="word-input">Word Content:</label>
+                    <textarea id="word-input" placeholder="Paste your Word document content here..."></textarea>
+                    <div class="input-actions">
+                        <button onclick="clearInput('word-input')"><i class="fas fa-eraser"></i> Clear</button>
+                        <button onclick="pasteFromClipboard('word-input')"><i class="fas fa-paste"></i> Paste</button>
+                    </div>
+                </div>
+                <div class="convert-btn-container">
+                    <button class="convert-btn" onclick="convertWordToHtml()">
+                        <i class="fas fa-arrow-right"></i> Convert to HTML
+                    </button>
+                </div>
+                <div class="output-section">
+                    <label for="word-output">HTML Output:</label>
+                    <textarea id="word-output" readonly></textarea>
+                    <div class="output-actions">
+                        <button onclick="copyToClipboard('word-output')"><i class="fas fa-copy"></i> Copy</button>
+                        <button onclick="downloadResult('word-output', 'converted.html')"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HTML to Markdown Converter -->
+        <section id="html-to-markdown" class="converter-section">
+            <div class="converter-header">
+                <h2><i class="fab fa-markdown"></i> HTML to Markdown Converter</h2>
+                <p>Convert HTML markup to clean Markdown syntax</p>
+            </div>
+            <div class="converter-content">
+                <div class="input-section">
+                    <label for="html-input">HTML Content:</label>
+                    <textarea id="html-input" placeholder="Paste your HTML content here..."></textarea>
+                    <div class="input-actions">
+                        <button onclick="clearInput('html-input')"><i class="fas fa-eraser"></i> Clear</button>
+                        <button onclick="pasteFromClipboard('html-input')"><i class="fas fa-paste"></i> Paste</button>
+                    </div>
+                </div>
+                <div class="convert-btn-container">
+                    <button class="convert-btn" onclick="convertHtmlToMarkdown()">
+                        <i class="fas fa-arrow-right"></i> Convert to Markdown
+                    </button>
+                </div>
+                <div class="output-section">
+                    <label for="markdown-output">Markdown Output:</label>
+                    <textarea id="markdown-output" readonly></textarea>
+                    <div class="output-actions">
+                        <button onclick="copyToClipboard('markdown-output')"><i class="fas fa-copy"></i> Copy</button>
+                        <button onclick="downloadResult('markdown-output', 'converted.md')"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HTML to BBCode Converter -->
+        <section id="html-to-bbcode" class="converter-section">
+            <div class="converter-header">
+                <h2><i class="fas fa-code"></i> HTML to BBCode Converter</h2>
+                <p>Convert HTML to BBCode format for forums and message boards</p>
+            </div>
+            <div class="converter-content">
+                <div class="input-section">
+                    <label for="html-bbcode-input">HTML Content:</label>
+                    <textarea id="html-bbcode-input" placeholder="Paste your HTML content here..."></textarea>
+                    <div class="input-actions">
+                        <button onclick="clearInput('html-bbcode-input')"><i class="fas fa-eraser"></i> Clear</button>
+                        <button onclick="pasteFromClipboard('html-bbcode-input')"><i class="fas fa-paste"></i> Paste</button>
+                    </div>
+                </div>
+                <div class="convert-btn-container">
+                    <button class="convert-btn" onclick="convertHtmlToBbcode()">
+                        <i class="fas fa-arrow-right"></i> Convert to BBCode
+                    </button>
+                </div>
+                <div class="output-section">
+                    <label for="bbcode-output">BBCode Output:</label>
+                    <textarea id="bbcode-output" readonly></textarea>
+                    <div class="output-actions">
+                        <button onclick="copyToClipboard('bbcode-output')"><i class="fas fa-copy"></i> Copy</button>
+                        <button onclick="downloadResult('bbcode-output', 'converted.txt')"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blockquote Generator -->
+        <section id="blockquote-generator" class="converter-section">
+            <div class="converter-header">
+                <h2><i class="fas fa-quote-right"></i> Blockquote Generator</h2>
+                <p>Generate beautiful blockquotes with author attribution</p>
+            </div>
+            <div class="converter-content">
+                <div class="input-section">
+                    <label for="quote-text">Quote Text:</label>
+                    <textarea id="quote-text" placeholder="Enter your quote text here..."></textarea>
+                    <div class="quote-options">
+                        <div class="form-group">
+                            <label for="quote-author">Author (optional):</label>
+                            <input type="text" id="quote-author" placeholder="Author name">
+                        </div>
+                        <div class="form-group">
+                            <label for="quote-source">Source (optional):</label>
+                            <input type="text" id="quote-source" placeholder="Book, article, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="quote-style">Style:</label>
+                            <select id="quote-style">
+                                <option value="html">HTML</option>
+                                <option value="markdown">Markdown</option>
+                                <option value="bbcode">BBCode</option>
+                                <option value="plain">Plain Text</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-actions">
+                        <button onclick="clearQuoteInputs()"><i class="fas fa-eraser"></i> Clear All</button>
+                    </div>
+                </div>
+                <div class="convert-btn-container">
+                    <button class="convert-btn" onclick="generateBlockquote()">
+                        <i class="fas fa-magic"></i> Generate Blockquote
+                    </button>
+                </div>
+                <div class="output-section">
+                    <label for="blockquote-output">Generated Blockquote:</label>
+                    <textarea id="blockquote-output" readonly></textarea>
+                    <div class="output-actions">
+                        <button onclick="copyToClipboard('blockquote-output')"><i class="fas fa-copy"></i> Copy</button>
+                        <button onclick="downloadResult('blockquote-output', 'blockquote.txt')"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                </div>
+                <div class="preview-section">
+                    <label>Live Preview:</label>
+                    <div id="blockquote-preview" class="preview-container"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Multi-Format Converter Suite. Built for easy format conversion.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
